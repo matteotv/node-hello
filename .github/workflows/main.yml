@@ -51,10 +51,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@master
-        with:
-          name: my-artifact
-          path: dist
+      # - uses: actions/download-artifact@master
+      #   with:
+      #     name: my-artifact
+      #     path: dist
                 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.0.0
@@ -63,6 +63,7 @@ jobs:
           
       - name: test lambda app 
         run: | 
+             npm install 
              npm run test
              npm prune --production
                 
