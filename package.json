@@ -1,20 +1,15 @@
 {
-  "name": "node-hello",
+  "name": "simple-calculator",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sample Node-Express app running on AWS Lambda",
+  "main": "calculator.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnpapa/node-hello.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/johnpapa/node-hello/issues"
-  },
-  "homepage": "https://github.com/johnpapa/node-hello#readme"
+  "author": "buraku",
+  "license": "MIT-O",
+  "dependencies": {
+    "aws-serverless-express": "^3.3.8",
+    "express": "^4.17.1"
+  }
 }
