@@ -88,7 +88,7 @@ jobs:
               cd terraform 
               terraform init
               export TF_VAR_access_key="${{secrets.ACCESS_KEY}}"
-              export TF_VAR_access_key="${{secrets.SECRET_KEY}}"
+              export TF_VAR_secret_key="${{secrets.SECRET_KEY}}"
               terraform apply --auto-approve
               sleep 10
               terraform destroy --auto-approve 
