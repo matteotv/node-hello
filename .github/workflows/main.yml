@@ -66,6 +66,32 @@ jobs:
              npm install 
              npm run test
              npm prune --production
+
+  deploy:
+    needs: test
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform
+
+      # - uses: actions/download-artifact@master
+      #   with:
+      #     name: my-artifact
+      #     path: dist
+
+      - name: provision Lambda
+        run: | 
+              cd terraform 
+              terraform init
+              export TF_VAR_access_key="${{secrets.access_key}}"
+              export TF_VAR_access_key="${{secrets.secret_key}}"
+              terraform apply --auto-approve
+              sleep 10
+              terraform destroy --auto-approve 
                 
         
           
