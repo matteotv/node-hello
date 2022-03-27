@@ -33,7 +33,7 @@ jobs:
       - name: packaging hello world application 
         run: | 
              npm install 
-             npm run 
+             npm start
                 
         
           
