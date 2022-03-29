@@ -85,6 +85,7 @@ jobs:
 
       - name: provision Lambda
         run: | 
+              cp lambdatest.zip terraform
               cd terraform 
               terraform init
               export TF_VAR_access_key="${{secrets.ACCESS_KEY}}"
