@@ -87,6 +87,7 @@ jobs:
         run: | 
               mv ./lambdatest.zip ./terraform/
               cd terraform 
+              ls
               terraform init
               export TF_VAR_access_key="${{secrets.ACCESS_KEY}}"
               export TF_VAR_secret_key="${{secrets.SECRET_KEY}}"
