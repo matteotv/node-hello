@@ -54,7 +54,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: lambdatest.zip
-          path: .
+          path: ~/
                 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.0.0
@@ -81,7 +81,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: lambdatest.zip
-          path: .
+          path: ~/
 
       - name: provision Lambda
         run: | 
