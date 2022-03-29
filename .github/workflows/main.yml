@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  buildAndTest:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -32,17 +32,11 @@ jobs:
           
       - name: packaging lambda app 
         run: | 
-             npm install 
-
-      - uses: actions/upload-artifact@master
-        with:
-          name: my-artifact
-          path: dist
-     
+             npm install
      
      # This workflow contains a single job called "build"
-  test:
-    needs: build
+  packageArtifacts:
+    needs: buildAndTest
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -51,10 +45,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # - uses: actions/download-artifact@master
-      #   with:
-      #     name: my-artifact
-      #     path: dist
+      - name: Install zip
+        uses: montudor/action-zip@v1
+
+      - name: Zip output
+        run: zip -qq -r lambdatest.zip src node_modules package.json events
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: lambdatest.zip
+          path: .
                 
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.0.0
@@ -68,7 +68,7 @@ jobs:
              npm prune --production
 
   deploy:
-    needs: test
+    needs: packageArtifacts
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -78,10 +78,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1.2.1
 
-      # - uses: actions/download-artifact@master
-      #   with:
-      #     name: my-artifact
-      #     path: dist
+      - uses: actions/download-artifact@master
+        with:
+          name: lambdatest.zip
+          path: .
 
       - name: provision Lambda
         run: | 
