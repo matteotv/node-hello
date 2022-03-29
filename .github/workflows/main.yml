@@ -62,7 +62,7 @@ jobs:
       - name: Zip output
         run: zip -qq -r lambdatest.zip src node_modules package.json events
 
-      - uses: actions/upload-artifact@master
+      - uses: actions/upload-artifact@v2
         with:
           name: lambdatest.zip
           path: lambdatest.zip
@@ -78,7 +78,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1.2.1
 
-      - uses: actions/download-artifact@master
+      - uses: actions/download-artifact@v2
         with:
           name: lambdatest.zip
           path: lambdatest.zip
