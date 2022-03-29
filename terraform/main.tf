@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+  name = "iam_for_lambda_test"
 
   assume_role_policy = <<EOF
 {
@@ -26,7 +26,7 @@ EOF
 }
 resource "aws_lambda_function" "test_lambda" {
   filename      = "lambdatest.zip"
-  function_name = "lambda_node_test_project"
+  function_name = "lambda_node_test_new_project"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.test"
 
