@@ -1,15 +1,15 @@
 {
-  "name": "simple-calculator",
-  "version": "1.0.0",
-  "description": "Sample Node-Express app running on AWS Lambda",
-  "main": "calculator.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "buraku",
-  "license": "MIT-O",
-  "dependencies": {
-    "aws-serverless-express": "^3.3.8",
-    "express": "^4.17.1"
-  }
+    "name": "lambda-api-backend",
+    "description": "Website & Mobile starter project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "aws-sdk": "^2.660.0"
+    },
+    "devDependencies": {
+        "jest": "^25.4.0"
+    },
+    "scripts": {
+        "test": "jest"
+    }
 }
